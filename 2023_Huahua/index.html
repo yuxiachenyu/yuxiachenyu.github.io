@@ -1,0 +1,274 @@
+<html lang="en">
+
+<head>
+    <meta name="360-analysis-id" content="2w1j1d382x352p2s">
+    <meta charset="utf-8">
+    <style type="text/css">
+	p{font-weight:bold;}
+	p{font-weight:1000;}
+	p{font-size:48px;}
+	p{font-family:"楷体";}
+	</style>
+    <title>2023年快乐</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#000000">
+    <meta name="msapplication-TileColor" content="#000000">
+    <link href="files/css/main.css" rel="stylesheet">
+    <script src="files/js/jquery.min.js" type="text/javascript"></script>   
+    <script src="files/js/gift.js"></script>
+    <script>
+        var shouci = true;
+        console.log(shouci);
+
+        function bodyPlayMusic() {
+            if (shouci) {
+                shouci = false;
+                audio.play();
+                console.log(shouci);
+            }
+        };
+    </script>
+</head>
+<!-- onclick="bodyPlayMusic()" -->
+
+<body>
+
+    <audio id="audioDom" src="audio.mp3" preload="auto" loop="loop"></audio>
+
+    <div id="yhBtn" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:999;display:flex;flex-direction:column;justify-content:center;align-items:center;color:#fff ; font-size:20px">
+
+        <p>花花，仙女<p>
+        <p>2023年成都再见！<p>
+        <p>衷心的希望<p><br><p style="color:orange;" >顺颂时祺、平安顺遂<p><br>
+        <p style="color:red;" >烟火向星辰，所愿皆成真<p><br>
+        <p>-----------点击画面看烟花吧！-----------<p>
+    </div>
+</script>
+
+    <div class="container">
+        <div class="loading-init">
+            <div class="loading-init__header"></div>
+            <div class="loading-init__status"></div>
+        </div>
+        <div class="stage-container remove">
+            <div class="page_two hide">
+                <div id="text" style="display:none;">
+                    <p><span id="timetoday"></span><br><span id="timenl"></span><br><br><span id="festival"></span><br><span id="gift"></span><br><span id="birthday"></span><br></p>
+                </div>
+                <div class="type_words" id="contents" style="font-size:1.15rem;line-height:1.5rem;"></div>
+            </div>
+            <div class="canvas-container">
+                <canvas id="trails-canvas"></canvas>
+                <canvas id="main-canvas"></canvas>
+            </div>
+
+            <div class="menu hide">
+                <div class="menu__inner-wrap">
+
+                    <div class="menu__header">设置</div>
+
+                    <form>
+                        <div class="form-option form-option--select">
+                            <label class="shell-type-label">烟花类型</label>
+                            <select class="shell-type"></select>
+                        </div>
+                        <div class="form-option form-option--select">
+                            <label class="shell-size-label">烟花大小</label>
+                            <select class="shell-size"></select>
+                        </div>
+                        <div class="form-option form-option--select">
+                            <label class="quality-ui-label">画质</label>
+                            <select class="quality-ui"></select>
+                        </div>
+                        <div class="form-option form-option--select">
+                            <label class="sky-lighting-label">天空照明</label>
+                            <select class="sky-lighting"></select>
+                        </div>
+                        <div class="form-option form-option--select">
+                            <label class="scaleFactor-label">规模</label>
+                            <select class="scaleFactor"></select>
+                        </div>
+                        <div class="form-option form-option--checkbox">
+                            <label class="auto-launch-label">自动发射</label>
+                            <input class="auto-launch" type="checkbox">
+                        </div>
+                        <div class="form-option form-option--checkbox form-option--finale-mode">
+                            <label class="finale-mode-label">结局模式</label>
+                            <input class="finale-mode" type="checkbox">
+                        </div>
+                        <div class="form-option form-option--checkbox">
+                            <label class="hide-controls-label">隐藏控制器</label>
+                            <input class="hide-controls" type="checkbox">
+                        </div>
+                        <div class="form-option form-option--checkbox form-option--fullscreen">
+                            <label class="fullscreen-label">全屏</label>
+                            <input class="fullscreen" type="checkbox">
+                        </div>
+                        <div class="form-option form-option--checkbox">
+                            <label class="long-exposure-label">打开快门</label>
+                            <input class="long-exposure" type="checkbox">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="help-modal">
+            <div class="help-modal__overlay"></div>
+            <div class="help-modal__dialog">
+                <div class="help-modal__header"></div>
+                <div class="help-modal__body"></div>
+                <button type="button" class="help-modal__close-btn">关闭</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- partial -->
+    <script src="files/js/fscreen%401.0.1.js"></script>
+    <script src="files/js/Stage%400.1.4.js"></script>
+    <script src="files/js/MyMath.js"></script>
+    <script src="files/js/script.js"></script>
+    <script src="files/js/calendar.js"></script>
+
+    <script>
+        function musicPlay(isPlay) {
+            var media = document.querySelector('#audioDom');
+            if (isPlay && media.paused) {
+                media.play();
+            }
+            if (!isPlay && !media.paused) {
+                media.pause();
+            }
+        }
+
+        function musicInBrowserHandler() {
+            setTimeout(function() {
+                musicPlay(true)
+            }, 0)
+        }
+
+        document.body.addEventListener('touchstart', musicInBrowserHandler);
+        $('#yhBtn').click(e => {
+            $('#yhBtn').hide()
+
+            setTimeout(() => {
+                startTime()
+                fireworks()
+            }, 1600) 
+            setTimeout(() => {
+                function audioAutoPlay() {
+                    var audio = document.getElementById('audioDom');
+                    audio.play();
+                }
+                audioAutoPlay();
+            }, 800) // 
+            console.log(updateConfig({
+                autoLaunch: true
+            }));
+        })
+
+        function fireworks() {
+            $('.page_one').addClass('hide');
+            $('.page_two').removeClass('hide');
+        }
+
+        function startTime() {
+            let str = $("#text").html();
+            let str_ = ''
+            let i = 0
+            let content = document.getElementById('contents')
+            let timer = setInterval(() => {
+                if (str_.length < str.length) {
+                    str_ += str[i++]
+                    content.innerHTML = '<p>' + str_ + '<span class="xx" style="opacity: 1;    color: white;">∎</span></p>' //打印时加光标
+                } else {
+                    clearInterval(timer)
+                    content.innerHTML = '<p>' + str_ + '</p>'
+                }
+            }, 100)
+        }
+
+        function time() {
+            var lunar = calendar.solar2lunar();
+
+            var clg = '<font color="238e23" style="white-space:pre-line;">'
+            var clr = '<font color="red" style="white-space:pre-line;">'
+            var clb = '<font color="#3299cc" style="white-space:pre-line;">'
+            var clo = '<font color="#ff8000" style="white-space:pre-line;">'
+            var clz = '<font color="#9933CC" style="white-space:pre-line;">'
+            var clmr = '<font color="#cc3299" style="white-space:pre-line;">'
+            var clor = '<font color="#ff4500" style="white-space:pre-line;">'
+            var clf = '<font color="#ffc0cb" style="white-space:pre-line;">'
+            var cldz = '<font color="#da7076" style="white-space:pre-line;">'
+            var clcg = '<font color="#00ff7f" style="white-space:pre-line;">'
+            var clj = '<font color="#cd7f32" style="white-space:pre-line;">'
+
+            if(lunar.festival==null&&lunar.lunarFestival==null){
+                if (lunar.cMonth==5&&lunar.cDay==4) {
+                    document.getElementById("birthday").innerHTML= clj + birthday
+                    document.getElementById("festival").innerHTML = clj + "今天是一个值得纪念的日子"
+                }else{
+                    document.getElementById("gift").innerHTML = richang;
+                    document.getElementById("festival").innerHTML = "日常的每一天都值得庆祝！"
+                }
+            }
+            else {
+                if (lunar.cMonth==5&&lunar.cDay==4) {
+                    document.getElementById("birthday").innerHTML= clj + birthday
+                }
+                if (lunar.festival=="元旦节") {
+                    document.getElementById("gift").innerHTML = clr + yuandan
+                }else if (lunar.festival=="情人节") {
+                    document.getElementById("gift").innerHTML = clf + qingrenjie
+                }else if (lunar.festival=="劳动节") {
+                    document.getElementById("gift").innerHTML = clcg + laodongjie
+                }else if (lunar.festival=="青年节") {
+                    document.getElementById("gift").innerHTML = clcg + qingnianjie
+                }else if (lunar.festival=="儿童节") {
+                    document.getElementById("gift").innerHTML = clf + ertongjie
+                }else if (lunar.festival=="国庆节") {
+                    document.getElementById("gift").innerHTML = clr + guoqingjie
+                }else if (lunar.festival=="平安夜") {
+                    document.getElementById("gift").innerHTML = clor + pinganye
+                }else if (lunar.festival=="圣诞节") {
+                    document.getElementById("gift").innerHTML = clo + shengdanjie
+                }else if (lunar.lunarFestival=="除夕") {
+                    document.getElementById("gift").innerHTML = clr + chuxi
+                }else if (lunar.lunarFestival=="春节") {
+                    document.getElementById("gift").innerHTML = clr + chunjie
+                }else if (lunar.lunarFestival=="元宵节") {
+                    document.getElementById("gift").innerHTML = clo + yuanxiao
+                }else if (lunar.lunarFestival=="龙抬头") {
+                    document.getElementById("gift").innerHTML = clcg + longtaitou
+                }else if (lunar.lunarFestival=="端午节") {
+                    document.getElementById("gift").innerHTML = clor + duanwu
+                }else if (lunar.lunarFestival=="七夕节") {
+                    document.getElementById("gift").innerHTML = clf + qixi
+                }else if (lunar.lunarFestival=="中秋节") {
+                    document.getElementById("gift").innerHTML = clo + zhongqiu
+                }else if (lunar.lunarFestival=="重阳节") {
+                    document.getElementById("gift").innerHTML = cldz + chongyang
+                }else{
+                   document.getElementById("gift").innerHTML =clmr + "\n因制作者太懒，这个节日没有祝福\n但惟愿每一天都开心快乐！" 
+                }
+            }
+            document.getElementById("timetoday").innerHTML = clg + lunar.cYear + "年" + lunar.cMonth +  '月' + lunar.cDay  + "日" + lunar.ncWeek
+            if (lunar.isTerm) {
+                document.getElementById("timenl").innerHTML = clz + lunar.gzYear+"["+lunar.Animal+"]"+"年 "+lunar.IMonthCn+lunar.IDayCn+" "+clo+lunar.Term
+            }else{
+                document.getElementById("timenl").innerHTML = clz + lunar.gzYear+"["+lunar.Animal+"]"+"年 "+lunar.IMonthCn+lunar.IDayCn
+            }
+            if (lunar.festival==null&&lunar.lunarFestival==null) {
+
+            }else if (lunar.lunarFestival==null) {
+                document.getElementById("festival").innerHTML = clb + lunar.festival
+            }else if (lunar.festival==null) {
+                document.getElementById("festival").innerHTML = clb + lunar.lunarFestival
+            }
+        }           
+    time()
+</script>
+</body>
+</html>
